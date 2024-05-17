@@ -126,10 +126,9 @@ jok-tds(){
    export QBase__CUSTOM_LUT=$LUT # implement propagate_at_multifilm
    echo "QBase__CUSTOM_LUT = ${QBase__CUSTOM_LUT}"
     
-   local oim=1     # 1:opticks optical simulation only
+   #local oim=1     # 1:opticks optical simulation only
    #local oim=0    # just standard junosw
-   #local oim=3    # 3:both geant4 and opticks optical simulation 
-   #local oim=1   # 3:both geant4 and opticks optical simulation 
+   local oim=3    # 3:both geant4 and opticks optical simulation 
    local OIM=${OIM:-$oim}
    export OPTICKS_INTEGRATION_MODE=$OIM   
    export OPTICKS_SCRIPT=$FUNCNAME        # avoid default sproc::_ExecutableName of python3.9 
@@ -139,15 +138,15 @@ jok-tds(){
    export NNVTMaskManager__MAGIC_virtual_thickness_MM=0.10       # default 0.05
 
 
-   #local mode=DebugLite
-   #local mode=Nothing     # GPU leak debug 
-   local mode=Minimal # measurement/production
-   #local mode=Hit
-   #local mode=HitPhotonSeq
+   # local mode=DebugLite
+   # local mode=Nothing     # GPU leak debug 
+   # local mode=Minimal # measurement/production
+   # local mode=Hit
+   local mode=HitPhotonSeq
 
    export OPTICKS_EVENT_MODE=$mode  ## see SEventConfig::Initialize SEventConfig::EventMode
    export OPTICKS_MAX_BOUNCE=31
-   export OPTICKS_MAX_PHOTON=M300
+   export OPTICKS_MAX_PHOTON=M3
    export OPTICKS_NUM_EVENT=20
 
    if [ "$OPTICKS_EVENT_MODE" == "DebugLite" ]; then

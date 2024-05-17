@@ -10,6 +10,18 @@
 #SBATCH --mem-per-cpu=20480
 #SBATCH --gres=gpu:v100:1
 
+source /cvmfs/juno.ihep.ac.cn/centos7_amd64_gcc1120_opticks/Pre-Release/J23.1.0-rc6/bashrc.sh # JUNOTOP set here
+source $JUNOTOP/setup.sh
+
+source $JUNOTOP/opticks/opticks.bash
+source $JUNOTOP/opticks/om.bash
+
+source ~/j/j.bash
+source ~/j/jx.bash
+source ~/j/jok.bash
+
+export RNGDir="/cvmfs/opticks.ihep.ac.cn/.opticks/rngcache/RNG"
+
 okjob-notes(){ cat << EON
 okjob-notes
 =============
@@ -92,7 +104,7 @@ okjob-tail(){
 }
 
 okjob-main(){
-   okjob-setup
+#   okjob-setup
    okjob-head
    okjob-body
    okjob-tail

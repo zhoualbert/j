@@ -23,9 +23,16 @@ source ~/j/j.bash
 source ~/j/jx.bash
 source ~/j/jok.bash
 
+home=/hpcfs/juno/junogpu/$USER
+[ -d "$home" ] && export HOME=$home   
+export TMP=$HOME/tmp   ## override default /tmp/$USER/opticks as /tmp is blackhole (not same filesystem on GPU cluster and gateway)  
+mkdir -p $TMP          ## whether override or not, need to create 
+
+export RNGDir="/cvmfs/opticks.ihep.ac.cn/.opticks/rngcache/RNG"
+
 export LUT=0
-export ENE=100  #MeV
-export OIM=1   # only GPU
+export ENE=10  #MeV
+export OIM=3   # Opticks Integration Mode
 export GUN=4
 export CATE="LUT_${LUT}_ENE_${ENE}_OIM_${OIM}_GUN_${GUN}"
 jok-tds
